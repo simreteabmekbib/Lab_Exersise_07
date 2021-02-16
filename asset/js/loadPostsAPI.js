@@ -1,5 +1,6 @@
 // UI Vars 
 const postDiv3 = document.getElementById('thePosts');
+const spiner = document.getElementById('spiner');
 
 //Load Every thing ....
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //load a single customer function 
 function load_fromPlaceHolder() {
-
     //open the request 
     fetch('https://jsonplaceholder.typicode.com/posts')
         .then(function(res) {
@@ -50,7 +50,6 @@ function load_fromPlaceHolder() {
         });
 
 
-
 }
 
 async function load_fromPlaceHolder_new() {
@@ -65,8 +64,11 @@ async function load_fromPlaceHolder_new() {
 }
 
 function loadDataNew() {
+    setTimeout(() => {
+
     load_fromPlaceHolder_new().then(function(posts) {
             //iterate over each post [100 posts]
+            spiner.style.display = "none";
             let output = '';
             posts.forEach(function(post) {
                 output += `
@@ -97,5 +99,6 @@ function loadDataNew() {
         .catch(function(err) {
             console.log(err);
         });
+    },2000);
 
 }
