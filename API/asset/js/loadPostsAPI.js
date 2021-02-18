@@ -1,6 +1,8 @@
 // UI Vars 
 const postDiv3 = document.getElementById('thePosts');
 const spiner = document.getElementById('spiner');
+const search = document.getElementById('search');
+search.disabled = true;
 
 //Load Every thing ....
 document.addEventListener("DOMContentLoaded", () => {
@@ -69,6 +71,7 @@ function loadDataNew() {
     load_fromPlaceHolder_new().then(function(posts) {
             //iterate over each post [100 posts]
             spiner.style.display = "none";
+            search.disabled = false;
             let output = '';
             posts.forEach(function(post) {
                 output += `
@@ -79,7 +82,7 @@ function loadDataNew() {
         </div>
         <div class="content">
             <a class="header" href="#" id="bTitle">
-            ${post.title.toUpperCase()}
+            ${post.title}
             </a>
             <div class="description">
                 <p id="bDesc">
@@ -99,6 +102,18 @@ function loadDataNew() {
         .catch(function(err) {
             console.log(err);
         });
-    },2000);
+    });
 
 }
+search.addEventListener('keyup', filterPosts);
+function filterPosts() {
+    let searchInput = document.getElementById('search').value;
+    let allPostHeaders = document.querySelectorAll('#thePosts .header');
+    allPostHeaders.forEach( function(postHeader) {
+        if (postHeader.textContent.indexOf(searchInput) == -1) {
+            postHeader.parentElement.parentElement.style.display = "none";
+        } else {
+            postHeader.parentElement.parentElement.style.display = "block";
+        }
+    })
+};
