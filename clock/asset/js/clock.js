@@ -1,15 +1,19 @@
-const deg = 6;
-const hr = document.querySelector('#hr');
-const mn = document.querySelector('#mn');
-const sc = document.querySelector('#sc');
+setInterval(setClock, 1000);
 
-setInterval(() =>{
-    let day = new.Date();
-    let hh = day.getHours() * 30;
-    let mm = day.getMinutes() * deg;
-    let ss = day.getSeconds() * deg;
+const hourHand = document.querySelector('.hour');
+const minuteHand = document.querySelector('.min');
+const secondHand = document.querySelector('.sec');
+const deg = 6;   // 360/60=6 for minute and second because rotate 60 times in one cycle 
+
+function setClock() {
+    const date = new Date();
+    const currentHour = date.getHours() * 30; // rotate 12 times in one rotate so 360/12= 
+    const currentMinute = date.getMinutes() * deg; //
+    const currentSecond = date.getSeconds() * deg;
     
-    hr.style.transform = `rotateZ(${(hh)+(mm/12)}deg)`;
-    mn.style.transform = `rotateZ(${mm}deg)`;
-    sc.style.transform = `rotateZ(${ss}deg)`;
-});
+
+    hourHand.style.transform = `rotateZ(${currentHour + (currentMinute/12)}deg)`;
+    minuteHand.style.transform = `rotateZ(${currentMinute}deg)`; 
+    secondHand.style.transform = `rotateZ(${currentSecond}deg)`;
+}
+setClock();
