@@ -7,7 +7,7 @@ const deg = 6;   // 360/60=6 for minute and second because rotate 60 times in on
 
 function setClock() {
     const date = new Date();
-    const currentHour = date.getHours() * 30; // rotate 12 times in one rotate so 360/12= 
+    const currentHour = date.getHours() * 30; // rotate 12 times in one rotate so 360/12= 30
     const currentMinute = date.getMinutes() * deg; //
     const currentSecond = date.getSeconds() * deg;
     

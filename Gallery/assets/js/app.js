@@ -2,11 +2,11 @@ const slider = document.querySelector('.carousel-inner');
 const spinner = document.querySelector('#spiner');
 
 document.addEventListener('DOMContentLoaded', () => {
-    load_fromPicsum();
+    Load_pic();
 })
 
 
-function load_fromPicsum() {
+function Load_pic() {
     setTimeout(() => {
     fetch('https://picsum.photos/v2/list')
     .then((res) => { return res.json(); })
